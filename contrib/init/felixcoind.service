@@ -1,0 +1,22 @@
+[Unit]
+Description=Felixcoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=felixcoin
+Group=felixcoin
+
+Type=forking
+PIDFile=/var/lib/felixcoind/felixcoind.pid
+ExecStart=/usr/bin/felixcoind -daemon -pid=/var/lib/felixcoind/felixcoind.pid \
+-conf=/etc/felixcoin/felixcoin.conf -datadir=/var/lib/felixcoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

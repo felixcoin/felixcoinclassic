@@ -1,0 +1,33 @@
+# /etc/conf.d/felixcoind: config file for /etc/init.d/felixcoind
+
+# Config file location
+#FELIXCOIND_CONFIGFILE="/etc/felixcoin/felixcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $FELIXCOIND_USER)
+#FELIXCOIND_PIDDIR="/var/run/felixcoind"
+
+# What filename to give the pidfile
+#FELIXCOIND_PIDFILE="${FELIXCOIND_PIDDIR}/felixcoind.pid"
+
+# Where to write felixcoind data (be mindful that the blockchain is large)
+#FELIXCOIND_DATADIR="/var/lib/felixcoind"
+
+# User and group to own felixcoind process
+#FELIXCOIND_USER="felixcoin"
+#FELIXCOIND_GROUP="felixcoin"
+
+# Path to felixcoind executable
+#FELIXCOIND_BIN="/usr/bin/felixcoind"
+
+# Nice value to run felixcoind under
+#FELIXCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+FELIXCOIND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for felixcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+FELIXCOIND_SIGTERM_TIMEOUT=60

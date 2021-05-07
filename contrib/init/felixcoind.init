@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  felixcoind The felixcoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: felixcoind
+# processname: felixcoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/felixcoind, see below
+if [ -f /etc/sysconfig/felixcoind ]; then
+        . /etc/sysconfig/felixcoind
+fi
+
+RETVAL=0
+
+prog=felixcoind
+# you can override the lockfile via FELIXCOIND_LOCKFILE in /etc/sysconfig/felixcoind
+lockfile=${FELIXCOIND_LOCKFILE-/var/lock/subsys/felixcoind}
+
+# felixcoind defaults to /usr/bin/felixcoind, override with FELIXCOIND_BIN
+felixcoind=${FELIXCOIND_BIN-/usr/bin/felixcoind}
+
+# felixcoind opts default to -disablewallet, override with FELIXCOIND_OPTS
+felixcoind_opts=${FELIXCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $felixcoind $felixcoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

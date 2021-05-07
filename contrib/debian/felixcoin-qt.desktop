@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Felixcoin Core
+Comment=Connect to the Felixcoin P2P Network
+Comment[de]=Verbinde mit dem Felixcoin peer-to-peer Netzwerk
+Comment[fr]=Felixcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Felixcoin, eşten eşe kriptografik sanal para birimi
+Exec=felixcoin-qt %u
+Terminal=false
+Type=Application
+Icon=felixcoin128
+MimeType=x-scheme-handler/felixcoin;
+Categories=Office;Finance;

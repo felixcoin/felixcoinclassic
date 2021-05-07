@@ -15,7 +15,7 @@ If your installation is not open to incoming connections this update is not mand
 
 Listed in strictly alphabetical order, using name listed in Github. This
 includes those whose contributions to Bitcoin Core have been merged
-into this Felixcoin Core release:
+into this Dogecoin Core release:
 
 * P. Kaufmann
 * Max K.

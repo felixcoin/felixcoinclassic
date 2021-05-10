@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Nintondo";
+    const char* pszTimestamp = "BBC NEWS 10-May-2021 Cryptocurrency Musk-s SpaceX to launch dogecoin moon mission";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -110,7 +110,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000141a39e783aad4f660f");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
@@ -144,31 +144,31 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xc0;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xc0;
+        pchMessageStart[0] = 0x46;
+        pchMessageStart[1] = 0x45;
+        pchMessageStart[2] = 0x4c;
+        pchMessageStart[3] = 0x58;
         vAlertPubKey = ParseHex("04d4da7a5dae4db797d9b0644d57a5cd50e05a70f36091cd62e2fc41c98ded06340be5a43a35e185690cd9cde5d72da8f6d065b499b06f51dcfba14aad859f443a");
         nDefaultPort = 22556;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1386325540, 99943, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1513784917, 2084550078, 0x1e0ffff0, 1, 88 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
+        assert(consensus.hashGenesisBlock == uint256S("00000fba090d1e88338322ac711db7be280f5943c19a0ffb6be787542467e12b"));
+        assert(genesis.hashMerkleRoot == uint256S("8c65d1929fb0ba3841af8e8256b8794be70dec3a983ab9b456d7d078bb85bd37"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("multidoge.org", "seed.multidoge.org", true));
-        vSeeds.push_back(CDNSSeedData("multidoge.org", "seed2.multidoge.org"));
+        //vSeeds.push_back(CDNSSeedData("multidoge.org", "seed.multidoge.org", true));
+        //vSeeds.push_back(CDNSSeedData("multidoge.org", "seed2.multidoge.org"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,30);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,35);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,158);
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0xfa)(0xca)(0xfd).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0xfa)(0xc3)(0x98).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,35);
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x08)(0x88)(0xca)(0xfd).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x08)(0x88)(0xc3)(0x98).convert_to_container<std::vector<unsigned char> >();
 
         //TODO: fix this for felixcoin -- plddr
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -181,8 +181,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (      0, uint256S("0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691"))
-            ( 104679, uint256S("0x35eb87ae90d44b98898fec8c39577b76cb1eb08e1261cfc10706c8ce9a1d01cf"))
+            (      0, uint256S("00000fba090d1e88338322ac711db7be280f5943c19a0ffb6be787542467e12b"))
+            /*( 104679, uint256S("0x35eb87ae90d44b98898fec8c39577b76cb1eb08e1261cfc10706c8ce9a1d01cf"))
             ( 145000, uint256S("0xcc47cae70d7c5c92828d3214a266331dde59087d4a39071fa76ddfff9b7bde72"))
             ( 371337, uint256S("0x60323982f9c5ff1b5a954eac9dc1269352835f47c2c5222691d80f0d50dcf053"))
             ( 450000, uint256S("0xd279277f8f846a224d776450aa04da3cf978991a182c6f3075db4c48b173bbd7"))
@@ -199,16 +199,16 @@ public:
             ( 3000000, uint256S("0x195a83b091fb3ee7ecb56f2e63d01709293f57f971ccf373d93890c8dc1033db"))
             ( 3250000, uint256S("0x7f3e28bf9e309c4b57a4b70aa64d3b2ea5250ae797af84976ddc420d49684034"))
             ( 3500000, uint256S("0xeaa303b93c1c64d2b3a2cdcf6ccf21b10cc36626965cc2619661e8e1879abdfb"))
-            ( 3606083, uint256S("0x954c7c66dee51f0a3fb1edb26200b735f5275fe54d9505c76ebd2bcabac36f1e"))
+            ( 3606083, uint256S("0x954c7c66dee51f0a3fb1edb26200b735f5275fe54d9505c76ebd2bcabac36f1e"))*/
         };
 
         chainTxData = ChainTxData{
             // Data as of block 954c7c66dee51f0a3fb1edb26200b735f5275fe54d9505c76ebd2bcabac36f1e (height 3606083).
             // Tx estimate based on average of year 2021 (~40k transactions per day)
-            1613217680, // * UNIX timestamp of last checkpoint block
-            71035468,   // * total number of transactions between genesis and last checkpoint
+            1513784917, // * UNIX timestamp of last checkpoint block
+            0,   // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.46        // * estimated number of transactions per second after checkpoint
+            0        // * estimated number of transactions per second after checkpoint
         };
     }
 };

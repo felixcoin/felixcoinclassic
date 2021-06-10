@@ -116,18 +116,18 @@ public:
         consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
 
         // AuxPoW parameters
-        consensus.nAuxpowChainId = 0x0062; // Classic 
+        consensus.nAuxpowChainId = 0x0255; // FF 
         consensus.fStrictChainId = true;
         consensus.fAllowLegacyBlocks = true;
         consensus.nHeightEffective = 0;
 
         // Blocks 145000 - 371336 are Digishield without AuxPoW
         digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 145000;
+        digishieldConsensus.nHeightEffective = 1;
         digishieldConsensus.fSimplifiedRewards = true;
         digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        digishieldConsensus.nCoinbaseMaturity = 240;
+        digishieldConsensus.nPowTargetTimespan = 600; // post-digishield: 10 minute
+        digishieldConsensus.nCoinbaseMaturity = 24;
 
         // Blocks 371337+ are AuxPoW
         auxpowConsensus = digishieldConsensus;
@@ -149,10 +149,10 @@ public:
         pchMessageStart[2] = 0x4c;
         pchMessageStart[3] = 0x58;
         vAlertPubKey = ParseHex("04d4da7a5dae4db797d9b0644d57a5cd50e05a70f36091cd62e2fc41c98ded06340be5a43a35e185690cd9cde5d72da8f6d065b499b06f51dcfba14aad859f443a");
-        nDefaultPort = 21888;
+        nDefaultPort = 21890;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1620688888, 2084863571, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1620688888, 2084863571, 0x1e0ffff0, 1, 1 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
@@ -182,7 +182,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (      0, uint256S("0xea3a69c27fbd2181d43e2b3be6cdc483c6e86d00e94b754a9a3b717987b8261c"))
+            (      0, uint256S("02a443ba77645f53816b5b309a4e183de83eab4b308be7c8247e7e56db9d101c"))
             /*( 104679, uint256S("0x35eb87ae90d44b98898fec8c39577b76cb1eb08e1261cfc10706c8ce9a1d01cf"))
             ( 145000, uint256S("0xcc47cae70d7c5c92828d3214a266331dde59087d4a39071fa76ddfff9b7bde72"))
             ( 371337, uint256S("0x60323982f9c5ff1b5a954eac9dc1269352835f47c2c5222691d80f0d50dcf053"))

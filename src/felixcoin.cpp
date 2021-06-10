@@ -11,6 +11,9 @@
 #include "txmempool.h"
 #include "util.h"
 #include "validation.h"
+#include "rpc/server.h"
+
+
 
 int static generateMTRandom(unsigned int s, int range)
 {
@@ -139,7 +142,7 @@ CAmount GetFelixcoinBlockSubsidy(int nHeight, const Consensus::Params& consensus
         return (1 + rand) * COIN;
     } else if (nHeight < (6 * consensusParams.nSubsidyHalvingInterval)) {
         // New-style constant rewards for each halving interval
-        return (500000 * COIN) >> halvings;
+        return ((int)(GetDifficulty() * 1000) / 1000 * COIN) >> halvings;
     } else {
         // Constant inflation
         return 10000 * COIN;

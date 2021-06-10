@@ -142,7 +142,7 @@ CAmount GetFelixcoinBlockSubsidy(int nHeight, const Consensus::Params& consensus
         return (1 + rand) * COIN;
     } else if (nHeight < (6 * consensusParams.nSubsidyHalvingInterval)) {
         // New-style constant rewards for each halving interval
-        return ((int)(GetDifficulty() * 1000) / 1000 * COIN) >> halvings;
+        return ((int)(GetDifficulty() * 100000) * COIN / 100000) >> halvings;
     } else {
         // Constant inflation
         return 10000 * COIN;
